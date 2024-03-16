@@ -44,4 +44,10 @@ public class UserController {
     public void deleteUser(@PathVariable String id) {
         userService.deleteUser(id);
     }
+
+    @PostMapping("/users/{id}/policies")
+    @ResponseBody
+    public UserDTO addPolicyToUser(@PathVariable String id, @RequestBody List<String> policyIds) {
+        return userService.addPoliciesToUser(id, policyIds);
+    }
 }

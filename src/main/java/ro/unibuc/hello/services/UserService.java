@@ -72,4 +72,18 @@ public class UserService {
         var users = userRepository.findAll();
         return users.stream().map(User::toDTO).collect(Collectors.toList());
     }
+
+    public UserDTO addPoliciesToUser(String userId, List<String> policyIds) {
+        var user = userRepository.findById(userId).orElseThrow(
+                () -> new EntityNotFoundException("User")
+        );
+        List<Policy> policies = new ArrayList<>();
+        policyIds.forEach(policy -> {
+            var existingPolicy = policyService.getPolicyById(policy);
+            policies.add(existingPolicy.toPolicy());
+        });
+        user.getPolicies().addAll(policies);
+        userRepository.save(user);
+        return user.toDTO();
+    }
 }
