@@ -15,7 +15,6 @@ import ro.unibuc.hello.exceptions.EntityNotFoundException;
 
 @ControllerAdvice
 @Order(value = Ordered.HIGHEST_PRECEDENCE)
-
 public class ExceptionController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {EntityAlreadyExistsException.class})

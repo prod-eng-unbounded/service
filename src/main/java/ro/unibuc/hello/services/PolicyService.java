@@ -22,22 +22,22 @@ public class PolicyService {
         var policy = policyRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("Policy")
         );
-        return new PolicyDTO(policy.id, policy.name, policy.statements);
+        return policy.toDTO();
     }
 
     public PolicyDTO addPolicy(String name, List<Statement> statements) {
         var id = UUID.randomUUID().toString();
         var policy = new Policy(id, name, statements);
         policyRepository.save(policy);
-        return new PolicyDTO(policy.id, policy.name, policy.statements);
+        return policy.toDTO();
     }
 
     public PolicyDTO updatePolicy(String id, String name, List<Statement> statements) throws EntityNotFoundException {
         var policy = policyRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("Policy")
         );
-        policy.name = name;
-        policy.statements = statements;
+        policy.setName(name);
+        policy.setStatements(statements);
         policyRepository.save(policy);
         return policy.toDTO();
     }

@@ -1,22 +1,20 @@
 package ro.unibuc.hello.entities;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import ro.unibuc.hello.dtos.PolicyDTO;
 
 import java.util.List;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Policy {
     @Id
-    public String id;
-    public String name;
-    public List<Statement> statements;
-
-    public Policy() {}
-
-    public Policy(String id, String name, List<Statement> statements){
-        this.id = id;
-        this.name = name;
-        this.statements = statements;
-    }
+    private String id;
+    private String name;
+    private List<Statement> statements;
 
     @Override
     public String toString() {
