@@ -9,8 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserCreateRequest {
+public class RoleCreateRequest {
     private String id;
     private List<String> policies;
-    private List<String> roles;
 }
