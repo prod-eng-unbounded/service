@@ -10,6 +10,5 @@ import ro.unibuc.hello.entities.Action;
 public interface ActionRepository extends MongoRepository<Action, String>{
 
     Optional<Action> findById(String id);
-    //List<ActionEntity> findByActionDescription(String description);
 
 }

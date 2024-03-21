@@ -41,4 +41,22 @@ public class ActionService {
         );
         return action.toDTO();
     }
+
+    public ActionDTO updateAction(String code, Action action) {
+        var existingAction = actionRepository.findById(code);
+        if(existingAction.isEmpty()) {
+            throw new EntityNotFoundException("Action");
+        }
+
+        actionRepository.save(action);
+        return action.toDTO();
+    }
+
+    public void deleteAction(String code) {
+        var action = actionRepository.findById(code).orElseThrow(
+                () -> new EntityNotFoundException("Action")
+        );
+        actionRepository.delete(action);
+    }
+
 }

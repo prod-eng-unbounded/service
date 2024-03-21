@@ -36,4 +36,16 @@ public class ActionController {
     public ActionDTO seeAction(@PathVariable String code){
         return actionService.getActionById(code);
     }
+
+    @PutMapping("/actions/{code}")
+    @ResponseBody
+    public ActionDTO updateAction(@PathVariable String code, @RequestBody Action action) {
+        return actionService.updateAction(code, action);
+    }
+
+    @DeleteMapping("/actions/{code}")
+    @ResponseBody
+    public void deleteAction(@PathVariable String code) {
+        actionService.deleteAction(code);
+    }
 }
