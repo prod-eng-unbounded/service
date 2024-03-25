@@ -123,16 +123,38 @@ public class RoleServiceTest {
 
     @Test
     void test_updateRole_throwsEntityNotFoundException() {
-        RoleCreateRequest roleCreateRequest = new RoleCreateRequest("role1", List.of("1", "2"));
+        RoleCreateRequest roleCreateRequest = new RoleCreateRequest("newRoleName", List.of("1", "2"));
 
-        when(roleRepository.findByName("role1")).thenReturn(Optional.empty());
+        when(roleRepository.findByName("newRoleName")).thenReturn(Optional.empty());
+        when(roleRepository.findByName("currentRoleName")).thenReturn(Optional.empty());
 
         try {
-            roleService.updateRole("role1", roleCreateRequest);
+            roleService.updateRole("currentRoleName", roleCreateRequest);
         } catch (Exception e) {
             assertEquals("Entity: Role was not found", e.getMessage());
         }
-        verify(roleRepository, times(1)).findByName("role1");
+        verify(roleRepository, times(1)).findByName("newRoleName");
+        verify(roleRepository, times(1)).findByName("currentRoleName");
+        verify(roleRepository, times(0)).save(any());
+    }
+
+    @Test
+    void test_updateRole_throwsEntityAlreadyExistsException() {
+        RoleCreateRequest roleCreateRequest = new RoleCreateRequest("newRoleName", List.of("1", "2"));
+        Role existingRole = new Role("newRoleName", new ArrayList<>());
+        Role roleToUpdate = new Role("currentRoleName", new ArrayList<>());
+
+        when(roleRepository.findByName("newRoleName")).thenReturn(Optional.of(existingRole));
+        when(roleRepository.findByName("currentRoleName")).thenReturn(Optional.of(roleToUpdate));
+
+        try {
+            roleService.updateRole("currentRoleName", roleCreateRequest);
+        } catch (Exception e) {
+            assertEquals("Entity: Role already exists", e.getMessage());
+        }
+        verify(roleRepository, times(1)).findByName("newRoleName");
+        verify(roleRepository, times(0)).findByName("currentRoleName");
+        verify(roleRepository, times(0)).save(any());
     }
 
     @Test

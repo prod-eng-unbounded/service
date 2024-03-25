@@ -49,19 +49,25 @@ public class RoleService {
     }
 
     public RoleDTO updateRole(String name, RoleCreateRequest roleCreateRequest) {
-        var existingRole = roleRepository.findByName(name);
-        if (existingRole.isEmpty()) {
-            throw new EntityNotFoundException("Role");
+        // Check if the new name we want to update is already taken by another role different from the one
+        // we want to update (role names should be unique).
+        var existingRole = roleRepository.findByName(roleCreateRequest.getName());
+        if (existingRole.isPresent() && !existingRole.get().getName().equals(name)) {
+            throw new EntityAlreadyExistsException("Role");
         }
+
+        var role = roleRepository.findByName(name).orElseThrow(
+                () -> new EntityNotFoundException("Role")
+        );
+
         List<Policy> policies = new ArrayList<>();
         roleCreateRequest.getPolicies().forEach(policyId -> {
             var policy = policyService.getPolicyById(policyId);
             policies.add(policy.toPolicy());
         });
-        var role = roleRepository.findByName(name).orElseThrow(
-                () -> new EntityNotFoundException("Role")
-        );
+
         role.setPolicies(policies);
+        role.setName(roleCreateRequest.getName());
         roleRepository.save(role);
         return role.toDTO();
     }

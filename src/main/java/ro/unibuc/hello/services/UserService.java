@@ -54,10 +54,16 @@ public class UserService {
     }
 
     public UserDTO updateUser(String id, UserCreateRequest userCreateRequest) {
-        var existingUser = userRepository.findById(id);
-        if (existingUser.isEmpty()) {
-            throw new EntityNotFoundException("User");
+        // Check if the new id we want to update is already taken by another user different from the one we want to update.
+        var existingUser = userRepository.findById(userCreateRequest.getId());
+        if (existingUser.isPresent() && !existingUser.get().getId().equals(id)) {
+            throw new EntityAlreadyExistsException("User");
         }
+
+        var user = userRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("User")
+        );
+
         List<Policy> policies = new ArrayList<>();
         List<Role> roles = new ArrayList<>();
 
@@ -70,12 +76,9 @@ public class UserService {
             roles.add(role.toRole());
         });
 
-        var user = userRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("User")
-        );
-
         user.setPolicies(policies);
         user.setRoles(roles);
+        user.setId(userCreateRequest.getId());
         userRepository.save(user);
         return user.toDTO();
     }
