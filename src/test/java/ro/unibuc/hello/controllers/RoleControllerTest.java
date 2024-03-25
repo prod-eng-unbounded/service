@@ -29,7 +29,7 @@ class RoleControllerTest {
     }
 
     @Test
-    void testCreateRole() {
+    void test_createRole() {
         RoleDTO roleDTO = new RoleDTO("admin", new ArrayList<>());
         RoleCreateRequest roleCreateRequest = new RoleCreateRequest("admin", new ArrayList<>());
 
@@ -42,7 +42,7 @@ class RoleControllerTest {
     }
 
     @Test
-    void testGetRoles() {
+    void test_getRoles() {
         when(roleService.getRoles()).thenReturn(new ArrayList<>());
 
         List<RoleDTO> result = roleController.getRoles();
@@ -52,19 +52,19 @@ class RoleControllerTest {
     }
 
     @Test
-    void testGetRoleByName() {
+    void test_getRoleByName() {
         RoleDTO roleDTO = new RoleDTO("admin", new ArrayList<>());
 
-        when(roleService.getRoleById("admin")).thenReturn(roleDTO);
+        when(roleService.getRoleByName("admin")).thenReturn(roleDTO);
 
         RoleDTO result = roleController.getRoleByName("admin");
 
         assertEquals(roleDTO, result);
-        verify(roleService, times(1)).getRoleById("admin");
+        verify(roleService, times(1)).getRoleByName("admin");
     }
 
     @Test
-    void testUpdateRole() {
+    void test_updateRole() {
         RoleDTO roleDTO = new RoleDTO("admin", new ArrayList<>());
         RoleCreateRequest roleCreateRequest = new RoleCreateRequest("admin", new ArrayList<>());
 
@@ -77,7 +77,7 @@ class RoleControllerTest {
     }
 
     @Test
-    void testDeleteRole() {
+    void test_deleteRole() {
         roleController.deleteRole("admin");
 
         verify(roleService, times(1)).deleteRole("admin");

@@ -23,7 +23,7 @@ public class RoleController {
     @GetMapping("/roles/{name}")
     @ResponseBody
     public RoleDTO getRoleByName(@PathVariable String name) {
-        return roleService.getRoleById(name);
+        return roleService.getRoleByName(name);
     }
 
     @PostMapping("/roles")

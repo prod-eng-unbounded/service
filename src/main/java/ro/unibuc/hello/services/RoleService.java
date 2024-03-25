@@ -27,14 +27,14 @@ public class RoleService {
         return roles.stream().map(Role::toDTO).collect(Collectors.toList());
     }
 
-    public RoleDTO getRoleById(String id){
-        return roleRepository.findById(id).orElseThrow(
+    public RoleDTO getRoleByName(String name){
+        return roleRepository.findByName(name).orElseThrow(
                 () -> new EntityNotFoundException("Role")
         ).toDTO();
     }
 
     public RoleDTO addRole(RoleCreateRequest roleCreateRequest) {
-        var existingRole = roleRepository.findById(roleCreateRequest.getName());
+        var existingRole = roleRepository.findByName(roleCreateRequest.getName());
         if (existingRole.isPresent()) {
             throw new EntityAlreadyExistsException("Role");
         }
@@ -48,8 +48,8 @@ public class RoleService {
         return role.toDTO();
     }
 
-    public RoleDTO updateRole(String id, RoleCreateRequest roleCreateRequest) {
-        var existingRole = roleRepository.findById(id);
+    public RoleDTO updateRole(String name, RoleCreateRequest roleCreateRequest) {
+        var existingRole = roleRepository.findByName(name);
         if (existingRole.isEmpty()) {
             throw new EntityNotFoundException("Role");
         }
@@ -58,7 +58,7 @@ public class RoleService {
             var policy = policyService.getPolicyById(policyId);
             policies.add(policy.toPolicy());
         });
-        var role = roleRepository.findById(id).orElseThrow(
+        var role = roleRepository.findByName(name).orElseThrow(
                 () -> new EntityNotFoundException("Role")
         );
         role.setPolicies(policies);
@@ -66,8 +66,8 @@ public class RoleService {
         return role.toDTO();
     }
 
-    public void deleteRole(String id) {
-        var role = roleRepository.findById(id).orElseThrow(
+    public void deleteRole(String name) {
+        var role = roleRepository.findByName(name).orElseThrow(
                 () -> new EntityNotFoundException("Role")
         );
         roleRepository.delete(role);

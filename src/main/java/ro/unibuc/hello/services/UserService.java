@@ -44,7 +44,7 @@ public class UserService {
             policies.add(policy.toPolicy());
         });
         userCreateRequest.getRoles().forEach(roleId -> {
-            var role = roleService.getRoleById(roleId);
+            var role = roleService.getRoleByName(roleId);
             roles.add(role.toRole());
         });
 
@@ -66,7 +66,7 @@ public class UserService {
             policies.add(policy.toPolicy());
         });
         userCreateRequest.getRoles().forEach(roleId -> {
-            var role = roleService.getRoleById(roleId);
+            var role = roleService.getRoleByName(roleId);
             roles.add(role.toRole());
         });
 
