@@ -34,7 +34,7 @@ public class RoleService {
     }
 
     public RoleDTO addRole(RoleCreateRequest roleCreateRequest) {
-        var existingRole = roleRepository.findById(roleCreateRequest.getId());
+        var existingRole = roleRepository.findById(roleCreateRequest.getName());
         if (existingRole.isPresent()) {
             throw new EntityAlreadyExistsException("Role");
         }
@@ -43,7 +43,7 @@ public class RoleService {
             var policy = policyService.getPolicyById(policyId);
             policies.add(policy.toPolicy());
         });
-        var role = new Role(roleCreateRequest.getId(), policies);
+        var role = new Role(roleCreateRequest.getName(), policies);
         roleRepository.save(role);
         return role.toDTO();
     }

@@ -20,10 +20,10 @@ public class RoleController {
         return roleService.getRoles();
     }
 
-    @GetMapping("/roles/{id}")
+    @GetMapping("/roles/{name}")
     @ResponseBody
-    public RoleDTO getRoleById(@PathVariable String id) {
-        return roleService.getRoleById(id);
+    public RoleDTO getRoleByName(@PathVariable String name) {
+        return roleService.getRoleById(name);
     }
 
     @PostMapping("/roles")
@@ -32,15 +32,15 @@ public class RoleController {
         return roleService.addRole(role);
     }
 
-    @PutMapping("/roles/{id}")
+    @PutMapping("/roles/{name}")
     @ResponseBody
-    public RoleDTO updateRole(@PathVariable String id, @RequestBody RoleCreateRequest role) {
-        return roleService.updateRole(id, role);
+    public RoleDTO updateRole(@PathVariable String name, @RequestBody RoleCreateRequest role) {
+        return roleService.updateRole(name, role);
     }
 
-    @DeleteMapping("/roles/{id}")
+    @DeleteMapping("/roles/{name}")
     @ResponseBody
-    public void deleteRole(@PathVariable String id) {
-        roleService.deleteRole(id);
+    public void deleteRole(@PathVariable String name) {
+        roleService.deleteRole(name);
     }
 }
