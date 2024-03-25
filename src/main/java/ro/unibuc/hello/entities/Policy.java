@@ -2,6 +2,7 @@ package ro.unibuc.hello.entities;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import ro.unibuc.hello.common.EffectTypes;
+import ro.unibuc.hello.dtos.ActionDTO;
 import ro.unibuc.hello.dtos.PolicyDTO;
 import java.util.List;
 
@@ -30,7 +31,8 @@ public class Policy {
         return new PolicyDTO(id, name, statements);
     }
 
-    public int hasRightsToAction(String actionCode){
+    public int hasRightsToAction(ActionDTO action){
+        String actionCode = action.getCode();
         boolean hasRights;
         for(var statement : statements) {
             for(var statementAction : statement.getActions()) {
