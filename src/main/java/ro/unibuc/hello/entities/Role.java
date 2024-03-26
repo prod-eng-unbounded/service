@@ -14,15 +14,15 @@ import java.util.stream.Collectors;
 @Builder
 public class Role {
     @Id
-    private String id;
+    private String name;
     private List<Policy> policies;
 
     @Override
     public String toString() {
-        return String.format("Role[id=%s]", id);
+        return String.format("Role[id=%s]", name);
     }
 
     public RoleDTO toDTO() {
-        return new RoleDTO(id, policies.stream().map(Policy::toDTO).collect(Collectors.toList()));
+        return new RoleDTO(name, policies.stream().map(Policy::toDTO).collect(Collectors.toList()));
     }
 }

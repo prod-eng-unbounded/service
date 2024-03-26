@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Builder
 public class RoleDTO {
-    private String id;
+    private String name;
     private List<PolicyDTO> policies;
 
     public Role toRole() {
-        return new Role(id, policies.stream().map(PolicyDTO::toPolicy).collect(Collectors.toList()));
+        return new Role(name, policies.stream().map(PolicyDTO::toPolicy).collect(Collectors.toList()));
     }
 }
