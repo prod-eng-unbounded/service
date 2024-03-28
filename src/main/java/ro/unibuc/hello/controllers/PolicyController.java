@@ -23,7 +23,6 @@ public class PolicyController {
     }
 
     @GetMapping("/policies/{id}")
-    @ExceptionHandler(EntityNotFoundException.class)
     @ResponseBody
     public PolicyDTO getPolicyById(@PathVariable String id) {
         return policyService.getPolicyById(id);
