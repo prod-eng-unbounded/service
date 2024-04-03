@@ -18,7 +18,6 @@ public class ActionController {
     private ActionService actionService;
 
     @PostMapping("/actions")
-    @ExceptionHandler(EntityAlreadyExistsException.class)
     @ResponseBody
     public ActionDTO createAction(@RequestBody Action action) {
         return actionService.addAction(action.getCode(), action.getDescription());
@@ -32,7 +31,6 @@ public class ActionController {
 
     @GetMapping("/actions/{code}")
     @ResponseBody
-    @ExceptionHandler(EntityNotFoundException.class)
     public ActionDTO seeAction(@PathVariable String code){
         return actionService.getActionById(code);
     }

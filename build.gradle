@@ -39,6 +39,10 @@ dependencies {
 	// Swagger
 	implementation 'org.springdoc:springdoc-openapi-ui:1.7.0'
 
+	// Integration tests
+	testImplementation 'org.testcontainers:testcontainers:1.16.3'
+	testImplementation 'org.testcontainers:mongodb:1.16.3'
+
 	//	E2E tests
 	runtimeOnly "org.junit.vintage:junit-vintage-engine:5.8.2"
 	testImplementation 'io.cucumber:cucumber-core:6.8.0'
