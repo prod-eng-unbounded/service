@@ -1,0 +1,71 @@
+Started by user [8mha:////4ARwcF39VDOnFavmEWJ71mo7m5KsF+Haj2BiMsr/fyXLAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/pe-authz
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/prod-eng-unbounded/service.git
+ > git init /var/jenkins_home/workspace/pe-authz # timeout=10
+Fetching upstream changes from https://github.com/prod-eng-unbounded/service.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.2'
+ > git fetch --tags --force --progress -- https://github.com/prod-eng-unbounded/service.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/prod-eng-unbounded/service.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse origin/main^{commit} # timeout=10
+Checking out Revision 82fd99c1d8f5e57e8ae82330a755c47d36c3ac3c (origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 82fd99c1d8f5e57e8ae82330a755c47d36c3ac3c # timeout=10
+Commit message: "Ignore Integration test"
+First time build. Skipping changelog.
+[Gradle] - Launching build.
+Unpacking https://services.gradle.org/distributions/gradle-7.6.4-bin.zip to /var/jenkins_home/tools/hudson.plugins.gradle.GradleInstallation/gradle-7 on Jenkins
+[pe-authz] $ /var/jenkins_home/tools/hudson.plugins.gradle.GradleInstallation/gradle-7/bin/gradle clean build
+
+Welcome to Gradle 7.6.4!
+
+Here are the highlights of this release:
+ - Added support for Java 19.
+ - Introduced `--rerun` flag for individual task rerun.
+ - Improved dependency block for test suites to be strongly typed.
+ - Added a pluggable system for Java toolchains provisioning.
+
+For more details see https://docs.gradle.org/7.6.4/release-notes.html
+
+Starting a Gradle Daemon (subsequent builds will be faster)
+[8mha:////4Lleky4fER979sp2yn5kQXivKEUxQ8V4zampTC8rmyzJAAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpCqzh62PfDo/h4mBoaKIQQqqJTk/rzgfqNYZQoMUMkAAI0hhAQASWqbMYgAAAA==[0m> Task :clean UP-TO-DATE
+[8mha:////4Lleky4fER979sp2yn5kQXivKEUxQ8V4zampTC8rmyzJAAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpCqzh62PfDo/h4mBoaKIQQqqJTk/rzgfqNYZQoMUMkAAI0hhAQASWqbMYgAAAA==[0m> Task :processResources
+[8mha:////4Lleky4fER979sp2yn5kQXivKEUxQ8V4zampTC8rmyzJAAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpCqzh62PfDo/h4mBoaKIQQqqJTk/rzgfqNYZQoMUMkAAI0hhAQASWqbMYgAAAA==[0m> Task :processTestResources
+[8mha:////4Lleky4fER979sp2yn5kQXivKEUxQ8V4zampTC8rmyzJAAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpCqzh62PfDo/h4mBoaKIQQqqJTk/rzgfqNYZQoMUMkAAI0hhAQASWqbMYgAAAA==[0m> Task :generateEffectiveLombokConfig
+
+[8mha:////4Lleky4fER979sp2yn5kQXivKEUxQ8V4zampTC8rmyzJAAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpCqzh62PfDo/h4mBoaKIQQqqJTk/rzgfqNYZQoMUMkAAI0hhAQASWqbMYgAAAA==[0m> Task :compileJava
+Note: /var/jenkins_home/workspace/pe-authz/src/main/java/ro/unibuc/hello/config/MongoConfig.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+[8mha:////4Lleky4fER979sp2yn5kQXivKEUxQ8V4zampTC8rmyzJAAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpCqzh62PfDo/h4mBoaKIQQqqJTk/rzgfqNYZQoMUMkAAI0hhAQASWqbMYgAAAA==[0m> Task :classes
+[8mha:////4Lleky4fER979sp2yn5kQXivKEUxQ8V4zampTC8rmyzJAAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpCqzh62PfDo/h4mBoaKIQQqqJTk/rzgfqNYZQoMUMkAAI0hhAQASWqbMYgAAAA==[0m> Task :bootJarMainClassName
+[8mha:////4Lleky4fER979sp2yn5kQXivKEUxQ8V4zampTC8rmyzJAAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpCqzh62PfDo/h4mBoaKIQQqqJTk/rzgfqNYZQoMUMkAAI0hhAQASWqbMYgAAAA==[0m> Task :bootJar
+[8mha:////4Lleky4fER979sp2yn5kQXivKEUxQ8V4zampTC8rmyzJAAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpCqzh62PfDo/h4mBoaKIQQqqJTk/rzgfqNYZQoMUMkAAI0hhAQASWqbMYgAAAA==[0m> Task :jar
+[8mha:////4Lleky4fER979sp2yn5kQXivKEUxQ8V4zampTC8rmyzJAAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpCqzh62PfDo/h4mBoaKIQQqqJTk/rzgfqNYZQoMUMkAAI0hhAQASWqbMYgAAAA==[0m> Task :assemble
+[8mha:////4Lleky4fER979sp2yn5kQXivKEUxQ8V4zampTC8rmyzJAAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpCqzh62PfDo/h4mBoaKIQQqqJTk/rzgfqNYZQoMUMkAAI0hhAQASWqbMYgAAAA==[0m> Task :generateTestEffectiveLombokConfig
+[8mha:////4Lleky4fER979sp2yn5kQXivKEUxQ8V4zampTC8rmyzJAAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpCqzh62PfDo/h4mBoaKIQQqqJTk/rzgfqNYZQoMUMkAAI0hhAQASWqbMYgAAAA==[0m> Task :compileTestJava
+[8mha:////4Lleky4fER979sp2yn5kQXivKEUxQ8V4zampTC8rmyzJAAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpCqzh62PfDo/h4mBoaKIQQqqJTk/rzgfqNYZQoMUMkAAI0hhAQASWqbMYgAAAA==[0m> Task :testClasses
+
+[8mha:////4Lleky4fER979sp2yn5kQXivKEUxQ8V4zampTC8rmyzJAAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpCqzh62PfDo/h4mBoaKIQQqqJTk/rzgfqNYZQoMUMkAAI0hhAQASWqbMYgAAAA==[0m> Task :test
+13:56:49.807 [SpringContextShutdownHook] DEBUG org.springframework.context.support.GenericApplicationContext - Closing org.springframework.context.support.GenericApplicationContext@3ec082a1, started on Wed Apr 10 13:56:47 UTC 2024
+
+[8mha:////4Lleky4fER979sp2yn5kQXivKEUxQ8V4zampTC8rmyzJAAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpCqzh62PfDo/h4mBoaKIQQqqJTk/rzgfqNYZQoMUMkAAI0hhAQASWqbMYgAAAA==[0m> Task :jacocoTestReport
+[8mha:////4Lleky4fER979sp2yn5kQXivKEUxQ8V4zampTC8rmyzJAAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpCqzh62PfDo/h4mBoaKIQQqqJTk/rzgfqNYZQoMUMkAAI0hhAQASWqbMYgAAAA==[0m> Task :check
+[8mha:////4Lleky4fER979sp2yn5kQXivKEUxQ8V4zampTC8rmyzJAAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpCqzh62PfDo/h4mBoaKIQQqqJTk/rzgfqNYZQoMUMkAAI0hhAQASWqbMYgAAAA==[0m> Task :build
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.6.4/userguide/command_line_interface.html#sec:command_line_warnings
+
+[8mha:////4LftE3ptYHb0f34NMzor36m4obITCqPTGVLDA5Sy/2WHAAAAYx+LCAAAAAAAAP9b85aBtbiIQT2jNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUz5l5Yk5+em+uWXpNbNmqZ4mHPZIiYGhooiBimoruT8vOJ8oHJnCA1SyAABjCCFBQBI197DZQAAAA==[0mBUILD SUCCESSFUL in 1m 32s
+12 actionable tasks: 11 executed, 1 up-to-date
+Build step 'Invoke Gradle script' changed build result to SUCCESS
+Finished: SUCCESS

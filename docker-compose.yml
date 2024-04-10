@@ -11,18 +11,19 @@ services:
     profiles:
       - "hello-service"
   jenkins:
-    image: jenkins/jenkins
+    image: jenkins-dind
     ports:
       - 8082:8080
       - 50000:50000
     restart: on-failure
     volumes:
+      - ./jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
-      - /usr/bin/docker:/usr/bin/docker
       - ./Dockerfile:/Dockerfile
+    privileged: true
     profiles:
-      - "hello-service"
-    user: 0:0
+      - "jenkins"
+
   mongo:
     image: mongo:5.0.2
     restart: always
