@@ -1,7 +1,8 @@
+version: '3.8'
+
 services:
   hello:
-    image: hello-img
-    build: .
+    image: peproject/pe_authz:${IMAGE_TAG}
     ports:
       - 8080:8080
     environment:
@@ -11,18 +12,25 @@ services:
     profiles:
       - "hello-service"
   jenkins:
-    image: jenkins/jenkins
+    image: jenkins-dind
     ports:
       - 8082:8080
       - 50000:50000
     restart: on-failure
     volumes:
+      - ./jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
-      - /usr/bin/docker:/usr/bin/docker
+      - /usr/local/bin/docker-compose:/usr/bin/docker-compose
+      - ./docker-compose.yml:/docker-compose.yml
       - ./Dockerfile:/Dockerfile
+    privileged: true
     profiles:
-      - "hello-service"
+      - "jenkins"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     user: 0:0
+
+
   mongo:
     image: mongo:5.0.2
     restart: always
