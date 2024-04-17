@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Build & Test') {
       steps {
-        sh './gradlew clean build --status'
+        sh './gradlew clean build --no-daemon'
         sh 'docker build -t peproject/pe_authz:latest .'
       }
     }
