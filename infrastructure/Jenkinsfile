@@ -8,7 +8,6 @@ pipeline {
   stages {
     stage('Tag image') {
       steps {
-        sh "./gradlew clean build"
         script {
            sh([script: 'git fetch --tag', returnStdout: true, trim: true])
            env.MAJOR_VERSION = sh([script: 'git tag | sort --version-sort | tail -1 | cut -d . -f 1', returnStdout: true]).trim()
