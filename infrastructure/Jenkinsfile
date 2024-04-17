@@ -6,11 +6,6 @@ pipeline {
   }
 
   stages {
-    stage('Build & Test') {
-      steps {
-        sh './gradlew clean build'
-      }
-    }
     stage('Tag image') {
       steps {
         script {
@@ -26,7 +21,13 @@ pipeline {
     }
     stage('Build Docker image') {
       steps {
+        sh "docker build -t <username>/hello-img:${MAJOR_VERSION}.\$((${MINOR_VERSION} + 1)).${PATCH_VERSION} ."
+      }
+    }
+    stage('Integration tests') {
+      steps {
         sh "IMAGE_TAG=${env.IMAGE_TAG} docker compose up -d hello mongo"
+        sh "docker compose exec hello ./gradlew testE2E"
       }
     }
   }
