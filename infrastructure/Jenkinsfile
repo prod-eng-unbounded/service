@@ -23,6 +23,7 @@ pipeline {
         sh "docker login -u peproject -p $DOCKER_PASSWORD"
         sh "docker build -t peproject/pe_authz:latest ."
         sh "docker tag peproject/pe_authz:latest peproject/pe_authz:${env.IMAGE_TAG}"
+        sh "docker push peproject/pe_authz:${env.IMAGE_TAG}"
         sh "git tag ${env.IMAGE_TAG}"
         sh "git push https://$GITHUB_TOKEN@github.com/prod-eng-unbounded/service.git ${env.IMAGE_TAG}"
       }
@@ -34,7 +35,7 @@ pipeline {
     }
     stage('End-to-end tests') {
       steps {
-        sh "./gradlew testE2E"
+        sh "MONGODB_CONECTION_URL="mongodb://root:example@host.docker.internal:27017"  ./gradlew testE2E"
       }
     }
   }
