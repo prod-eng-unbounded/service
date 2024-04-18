@@ -35,7 +35,7 @@ pipeline {
     }
     stage('End-to-end tests') {
       steps {
-        sh "MONGODB_CONECTION_URL='mongodb://root:example@host.docker.internal:27017'  ./gradlew testE2E"
+        sh "MONGODB_CONECTION_URL='mongodb://root:example@host.docker.internal:27017' ./gradlew testE2E"
       }
     }
   }
