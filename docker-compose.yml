@@ -2,7 +2,8 @@ version: '3.8'
 
 services:
   hello:
-    image: peproject/pe_authz:${IMAGE_TAG}
+    image: peproject/pe_authz:latest
+    build: .
     ports:
       - 8080:8080
     environment:
