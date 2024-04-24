@@ -1,8 +1,6 @@
-version: '3.8'
-
 services:
   hello:
-    image: peproject/pe_authz:latest
+    image: hello-img
     build: .
     ports:
       - 8080:8080
@@ -17,25 +15,18 @@ services:
     profiles:
       - "hello-service"
   jenkins:
-    image: jenkins-dind
+    image: jenkins/jenkins
     ports:
       - 8082:8080
       - 50000:50000
     restart: on-failure
     volumes:
-      - ./jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
-      - /usr/local/bin/docker-compose:/usr/bin/docker-compose
-      - ./docker-compose.yml:/docker-compose.yml
+      - /usr/bin/docker:/usr/bin/docker
       - ./Dockerfile:/Dockerfile
-    privileged: true
     profiles:
-      - "jenkins"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - "hello-service"
     user: 0:0
-
-
   mongo:
     image: mongo:5.0.2
     restart: always
@@ -67,7 +58,7 @@ services:
         loki-url: "http://loki:3100/loki/api/v1/push"
     profiles:
       - "mongo"
-# MONITORING SERVICES
+  # MONITORING SERVICES
   cadvisor: # container metric prometheus exporter
     image: gcr.io/cadvisor/cadvisor:v0.47.1
     container_name: cadvisor
@@ -149,7 +140,7 @@ services:
       driver: loki
       options:
         loki-url: "http://loki:3100/loki/api/v1/push"
-    
+
   wrk-injector-info-perf: # traffic injector (high)
     image: mtchavez/docker-wrk
     profiles:

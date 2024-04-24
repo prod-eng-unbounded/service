@@ -9,7 +9,7 @@ clean:
 
 build: clean
 	# A separate image for build allows the process to avoid dependencies with the build machine.
-	docker build -t $(BUILDER_TAG) -f Dockerfile.build .
+	sudo docker build -t $(BUILDER_TAG) -f Dockerfile.build .
 	# Runs the image generated in the above step to create the actual deployable artifact (i.e. jar file).
 	# docker run -t -v `pwd`:/build $(BUILDER_TAG)
 	# In the above build step, maven starts of by downloading all dependencies and
@@ -17,9 +17,9 @@ build: clean
 	# please use the following command instead. This will ensure, a docker volume is
 	# responsible for incrementally saving the dependencies and avoids the time taken to download
 	# all dependencies every time.
-	docker run -v "m2:/root/.m2" -v "`pwd`:/build" -v "/usr/local/bin/docker:/usr/bin/docker" -v "/var/run/docker.sock:/var/run/docker.sock" $(BUILDER_TAG)
+	sudo docker run -v "m2:/root/.m2" -v "`pwd`:/build" -v "/usr/local/bin/docker:/usr/bin/docker" -v "/var/run/docker.sock:/var/run/docker.sock" $(BUILDER_TAG)
 	# Builds the docker image for running the service.
-	docker build -t $(IMAGE_TAG):$(IMAGE_VERSION) .
+	sudo docker build -t $(IMAGE_TAG):$(IMAGE_VERSION) .
 	echo "Success"
 
 post-deploy-build:
