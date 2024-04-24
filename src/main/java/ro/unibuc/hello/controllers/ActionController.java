@@ -1,5 +1,7 @@
 package ro.unibuc.hello.controllers;
 
+import io.micrometer.core.annotation.Counted;
+import io.micrometer.core.annotation.Timed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,8 @@ public class ActionController {
 
     @PostMapping("/actions")
     @ResponseBody
+    @Timed(value = "createAction.action.time", description = "Time taken to return action")
+    @Counted(value = "createAction.action.count", description = "Times action was returned")
     public ActionDTO createAction(@RequestBody Action action) {
         return actionService.addAction(action.getCode(), action.getDescription());
     }

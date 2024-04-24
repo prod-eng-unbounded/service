@@ -1,8 +1,10 @@
 package ro.unibuc.hello.services;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +20,14 @@ public class ActionService {
     @Autowired
     private ActionRepository actionRepository;
 
+    @Autowired
+    private MeterRegistry metricsRegistry;
+
+    private final AtomicLong counter = new AtomicLong();
+
     public ActionDTO addAction(String code, String description) throws EntityAlreadyExistsException{
+
+        metricsRegistry.counter("my_non_aop_metric", "endpoint", "hello").increment(counter.incrementAndGet());
 
         var existingAction = actionRepository.findById(code);
         if (existingAction.isPresent()) {
